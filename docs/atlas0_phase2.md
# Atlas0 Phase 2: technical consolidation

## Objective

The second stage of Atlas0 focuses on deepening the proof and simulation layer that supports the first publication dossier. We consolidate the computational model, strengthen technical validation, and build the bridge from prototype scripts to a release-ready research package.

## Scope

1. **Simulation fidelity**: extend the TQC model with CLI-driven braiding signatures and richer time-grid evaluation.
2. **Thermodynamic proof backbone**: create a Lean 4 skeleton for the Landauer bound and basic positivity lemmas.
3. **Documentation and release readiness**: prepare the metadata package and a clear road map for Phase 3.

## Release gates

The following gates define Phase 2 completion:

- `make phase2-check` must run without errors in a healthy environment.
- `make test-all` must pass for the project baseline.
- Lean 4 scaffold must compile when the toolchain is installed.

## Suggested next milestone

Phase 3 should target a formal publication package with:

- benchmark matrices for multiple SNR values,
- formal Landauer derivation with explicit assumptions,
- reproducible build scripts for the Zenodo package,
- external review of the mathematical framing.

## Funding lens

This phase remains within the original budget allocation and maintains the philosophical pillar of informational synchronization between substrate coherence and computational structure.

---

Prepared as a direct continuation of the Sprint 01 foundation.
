@@ -1,0 +1,41 @@
+{
+  "version": "phase_02",
+  "sprint_id": "sprint_01_software_foundation",
+  "status": "active",
+  "phase": 2,
+  "goal": "Consolidar la base matemática, la infraestructura de prueba y la preparación documental para la publicación técnica de Atlas0.",
+  "workstreams": [
+    {
+      "id": "P2-TQC",
+      "title": "Topological simulation",
+      "deliverables": [
+        "CLI robusto para la simulación de aniones de Fibonacci",
+        "evaluación por cuadrícula temporal",
+        "reportes de fidelidad y coherencia"
+      ]
+    },
+    {
+      "id": "P2-LAND",
+      "title": "Landauer proof scaffold",
+      "deliverables": [
+        "Lean 4 foundation",
+        "teorema de no negatividad de energía",
+        "cota termodinámica con referencia a 300 K"
+      ]
+    },
+    {
+      "id": "P2-DOC",
+      "title": "Documentación de lanzamiento",
+      "deliverables": [
+        "dossier de fase 2",
+        "metadatos de publicación",
+        "roadmap de release"
+      ]
+    }
+  ],
+  "milestones": [
+    {"name": "phase2_simulation_ready", "done": true},
+    {"name": "phase2_lean_scaffold_ready", "done": true},
+    {"name": "phase2_release_dossier_ready", "done": true}
+  ]
+}
