@@ -1,82 +1,46 @@
-# Atlas0: Quantum Foundation Sprint
+# Atlas0 (ordenador 2.6 × 10)
 
-**Sprint ID:** `sprint_01_software_foundation`  
-**Status:** Active  
-**Timeline:** 2026-10-07 to 2026-10-21 (2 weeks)  
-**Budget:** €2,500  
+**Autor:** Lázaro López Paz, El Prat de Llobregat, Barcelona, España, con asistencia de inteligencia artificial.
+**ORCID:** [0000-0001-8601-1963](https://orcid.org/0000-0001-8601-1963)
+**Licencia:** software MIT (ver `LICENSE`); documentos CC BY 4.0.
+**Nivel de evidencia:** E1 (diseño/propuesta con demos mínimas de software). Sin hardware, sin experimento, sin resultados físicos.
 
-## Overview
+## Qué contiene realmente este repositorio
 
-Atlas0 Phase 1 bootstraps a computational framework merging:
-- **Topological Quantum Compilation (TQC):** Fibonacci anyon braiding under Bell-state fidelity
-- **Reversible Logic:** Toffoli gates and Landauer thermodynamic limit at 300 K
-- **Conscious Substrate Informatics:** Coherence as synchronization with the informational network
+| Ruta | Contenido | Estado verificado (2026-10-30) |
+|---|---|---|
+| `src/tqc_demo.py` | Demo numérica de "braiding" de anyones de Fibonacci; imprime fidelidad y coherencia de juguete | Se ejecuta; valores de un modelo simplificado, no de un sistema cuántico |
+| `src/rewind_demo.rs`, `tests/rewind/` | Puerta Toffoli y límite de Landauer kT·ln2 a 300 K | `cargo test` en `tests/rewind` |
+| `lean/Atlas0.lean` | Andamiaje Lean 4 (constante de Boltzmann y lema de no negatividad de Landauer) | Requiere toolchain Lean/elan; no se valida en CI sin Lean |
+| `docs/atlas0.{md,tex,bib}`, `docs/atlas0_phase2.md` | Borrador de dossier y notas de Fase 2 | Borrador E1; sin DOI de Zenodo |
+| `scripts/sprint_01_manifest.json` | Plan del sprint 01 | Plan, no resultado |
+| `Makefile` | Objetivos `check-deps`, `install-*`, `phase2-check`, `test-all`, `lean-check` | Requiere Python 3 y Rust |
+| `LICENSE` | MIT | — |
 
-## Quick Start
+## Qué NO hay todavía
+
+- Compilación topológica cuántica real ni hardware: la demo TQC es una simulación de juguete.
+- Prueba formal en Lean comprobada en este entorno.
+- Resultados físicos, benchmarks experimentales o publicación con DOI.
+- El presupuesto y el calendario del manifiesto son del plan; su ejecución está pendiente de verificación.
+
+## Uso
 
 ```bash
-# Clone and setup
-git clone https://github.com/canelonemf-byte/Atlas0-ordenador2.6-x-10-.git
-cd Atlas0-ordenador2.6-x-10-
-
-# Verify dependencies (A8)
-make check-deps
-
-# Install and test all components
-make install-tqc install-rewind install-theseus
-make test-all
+python3 src/tqc_demo.py --time 0.8 --tau 2.5 --snr 3.0 --angle 1.25663706
+cargo test --manifest-path tests/rewind/Cargo.toml
+make phase2-check   # requiere Rust y Python
+make lean-check     # opcional; omite si no hay elan/Lean
 ```
 
-## Project Structure
+## Autoría
 
-```
-.
-├── scripts/
-│   └── sprint_01_manifest.json       # Project directives & timeline
-├── src/
-│   ├── tqc_demo.py                   # [A1] Fibonacci anyon braiding demo
-│   └── rewind_demo.rs                # [A2] Reversible logic primer
-├── tests/
-│   └── rewind/
-│       ├── Cargo.toml
-│       └── src/lib.rs                # Toffoli & Landauer tests
-├── docs/
-│   ├── atlas0.md                     # [A7] Markdown dossier
-│   ├── atlas0.tex                    # [A7] LaTeX compilation source
-│   └── atlas0.bib                    # [A7] Citation metadata for Zenodo
-├── Makefile                          # [A8] CI/CD pipeline gate
-├── LICENSE                           # [A6/A5] MIT clearance
-└── .gitignore
-```
+Lázaro López Paz, El Prat de Llobregat, Barcelona, España.
+ORCID: 0000-0001-8601-1963.
+Trabajo con asistencia de inteligencia artificial. Sin afiliaciones institucionales.
 
-## Directives Map
+## Referencias de terceros
 
-| ID  | Task                  | File(s)                              | Status |
-|-----|----------------------|--------------------------------------|--------|
-| A1  | TQC anyon braiding   | `src/tqc_demo.py`                   | ✓ Ready  |
-| A2  | Reversible logic     | `src/rewind_demo.rs`, `tests/`      | ✓ Ready  |
-| A6/A5 | License clearance  | `LICENSE`                            | ✓ MIT/Apache |
-| A8  | CI/CD pipeline       | `Makefile`                           | ✓ Green  |
-| A7  | Zenodo metadata      | `docs/atlas0.{md,tex,bib}`          | ✓ Prepared |
-
-## Test Pipeline
-
-Run the complete validation (blocks on failure):
-```bash
-make test-all
-```
-
-This executes:
-1. Python TQC demo compilation
-2. Rust reversible logic unit tests
-3. TQC demo execution
-
-## License
-
-MIT License. See `LICENSE` for full text.
-
-## References
-
-- Landauer, R. (1961) "Irreversibility and Heat Generation in the Computing Process"
-- Kitaev, A. Yu. (2003) "Fault-tolerant quantum computation by anyons"
-- Atlas0 Phase 1 Zenodo dossier (CC BY 4.0)
+- Landauer, R. (1961). Irreversibility and Heat Generation in the Computing Process. IBM J. Res. Dev. 5(3).
+- Kitaev, A. Yu. (2003). Fault-tolerant quantum computation by anyons. Annals of Physics 303(1).
+- Toffoli, T. (1980). Reversible computing.

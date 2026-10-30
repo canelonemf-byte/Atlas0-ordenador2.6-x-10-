@@ -35,7 +35,7 @@ install-rewind: check-deps
 
 install-theseus:
 	@echo "[P2] Initializing Lean 4 proof scaffold..."
-	@echo "This repository carries a lightweight Lean 4 foundation for the Landauer theorem.
+	@echo "This repository carries a lightweight Lean 4 foundation for the Landauer theorem."
 	@echo "If Lean is available, use: make lean-check"
 
 lean-check:
