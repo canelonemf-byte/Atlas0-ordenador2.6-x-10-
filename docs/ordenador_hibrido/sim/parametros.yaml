@@ -1,0 +1,32 @@
+# Parámetros del modelo MVM. Política t6 (2026-10-30): solo se sustituye un valor
+# si (a) el DOI/arXiv resuelve y (b) el número aparece en texto accesible y encaja
+# en el hueco del modelo sin inventar un mapeo. Si no, permanece "supuesto".
+#
+# Intentos de verificación (no sustituyen):
+# - CMOS MAC / SRAM: Horowitz, ISSCC 2014, doi:10.1109/isscc.2014.6757323
+#   (Crossref OK; PDF accesible). Texto localiza ~10 pJ "functional operation",
+#   ~20 pJ cache fetch, ~70 pJ/instrucción, DRAM 1–2 nJ; Fig. 1.1.9 (45 nm) no
+#   ofrece un MAC 8 bit limpio → e_mac_pj y e_lectura_peso_pj siguen supuesto.
+# - ADC: Andrulis et al., arXiv:2404.06553 (modelo arquitectural de energía ADC
+#   vs throughput/ENOB; sin constante única e_adc_pj_por_bit para este modelo)
+#   → e_adc_pj_por_bit y e_dac_pj siguen supuesto.
+# - Celda memristiva / ruido / calibración: sin fuente con valor localizado → supuesto.
+semilla: {valor: 20261020, fuente: supuesto}
+tarea:
+  filas: {valor: 256, fuente: supuesto}        # tamaño de la matriz (N x N)
+  columnas: {valor: 256, fuente: supuesto}
+  n_vectores: {valor: 200, fuente: supuesto}
+cmos:
+  e_mac_pj: {valor: 1.0, fuente: "supuesto (MAC 8 bit, incluye acceso a SRAM local); Horowitz 2014 no aporta MAC 8 bit directo"}
+  e_lectura_peso_pj: {valor: 5.0, fuente: "supuesto (lectura de peso desde memoria on-chip)"}
+  bits: {valor: 8, fuente: supuesto}
+cim:
+  niveles_conductancia: {valores: [2, 4, 8, 16], fuente: supuesto}
+  g_max_us: {valor: 100.0, fuente: supuesto}
+  ruido_programacion_rel: {valor: 0.02, fuente: "supuesto (sigma relativa a g_max)"}
+  ruido_lectura_rel: {valor: 0.01, fuente: supuesto}
+  e_celda_pj: {valor: 0.01, fuente: "supuesto (energía por celda por lectura analógica)"}
+  e_dac_pj: {valor: 0.5, fuente: "supuesto (por fila activada, por vector)"}
+  e_adc_pj_por_bit: {valor: 1.0, fuente: "supuesto (ADC escala ~lineal con bits en este modelo simple)"}
+  bits_adc: {valores: [4, 6, 8], fuente: supuesto}
+  e_calibracion_pj_por_vector: {valor: 50.0, fuente: "supuesto (calibración/periféricos amortizados)"}
