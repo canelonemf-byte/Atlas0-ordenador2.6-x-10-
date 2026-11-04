@@ -70,8 +70,8 @@ Prepared as a direct continuation of the Sprint 01 foundation.
     }
   ],
   "milestones": [
-    {"name": "phase2_simulation_ready", "done": true},
-    {"name": "phase2_lean_scaffold_ready", "done": true},
-    {"name": "phase2_release_dossier_ready", "done": true}
+    {"name": "phase2_simulation_ready", "done": false, "nota": "PENDIENTE DE VERIFICACIÓN: sin evidencia archivada"},
+    {"name": "phase2_lean_scaffold_ready", "done": false, "nota": "PENDIENTE DE VERIFICACIÓN: sin evidencia archivada"},
+    {"name": "phase2_release_dossier_ready", "done": false, "nota": "PENDIENTE DE VERIFICACIÓN: sin evidencia archivada"}
   ]
 }
